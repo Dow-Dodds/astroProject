@@ -2,6 +2,18 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = 'Dow Records'
 
+let travelStudies = [];
+
+try {
+  const response = await fetch('https://66e3bebae86395a3a9b28e4a--dowrecords.netlify.app/.netlify/functions/travelStudies');
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  const data = await response.json();
+  travelStudies = data || [];
+} catch (error) {
+  console.error('Error fetching travel studies:', error);
+}
 ---
 
 <BaseLayout pageTitle= {pageTitle}>
