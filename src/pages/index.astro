@@ -2,25 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = 'Dow Records'
 
-let travelStudies = [];
 
-try {
-  const response = await fetch('https://66e3bebae86395a3a9b28e4a--dowrecords.netlify.app/.netlify/functions/travelStudies');
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-  const data = await response.json();
-  travelStudies = data || [];
-} catch (error) {
-  console.error('Error fetching travel studies:', error);
-}
 ---
 
 <BaseLayout pageTitle= {pageTitle}>
    
     <div class="hero flex flex-col w-full h-screen ">  
         <div id="heroImage" class="full mx-8 h-[80%] bg-color-pink">
-            <img src="/public/hero.jpg"  class="w-auto h-[100%]"/>
+            <img src="/hero.jpg"  class="w-auto h-[100%]"/>
         </div>
        
         <div class="my-4 mx-8 flex justify-end" >
@@ -30,6 +19,11 @@ try {
         
         </div>
     </div> 
+    <div>
+        <ul>
+           
+        </ul>
+    </div>
 
 
 </BaseLayout>
