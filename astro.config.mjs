@@ -4,6 +4,6 @@ import vercelStatic from '@astrojs/vercel/static';
  
 export default defineConfig({
   // Must be 'static' or 'hybrid'
-  output: 'static',
+  output: 'hybrid',
   adapter: vercelStatic(),
 });
