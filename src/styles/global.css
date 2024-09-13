@@ -4,14 +4,18 @@
 
 
 body {
-   @apply m-0 font-SpaceMono bg-color-pink;
+   @apply m-0 bg-color-primary;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-bold;
+  @apply font-bold font-SpaceMono;
 }
 
 h1 {
-  @apply text-3xl; /* Adjust size as needed, `text-3xl` is approximately 30px */
+  @apply text-6xl; /* Adjust size as needed, `text-3xl` is approximately 30px */
+}
+
+p, a {
+  @apply font-SpaceGrotesk;
 }
 

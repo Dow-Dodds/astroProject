@@ -13,6 +13,8 @@ module.exports = {
       },
       fontFamily: { 
         'SpaceMono': ['Space Mono', 'monospace'] ,
+        'SpaceGrotesk': [ 'SpaceGrotesk', 'sans-serif'],
+       
       }
     },
   },
