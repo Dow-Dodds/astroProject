@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
-// Import /static for a static site
-import vercelStatic from '@astrojs/vercel/static';
+import vercel from '@astrojs/vercel/serverless';
  
 export default defineConfig({
-  // Must be 'static' or 'hybrid'
   output: 'hybrid',
-  adapter: vercelStatic(),
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
 });
