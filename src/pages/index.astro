@@ -1,70 +1,76 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const pageTitle = 'Dow Records'
+const pageTitle = "Dow Records";
 
 // Fetch data from API
-//const response = await fetch('http://localhost:4321/travelStudies.json');
-const response = await fetch('/travelStudies.json');
+const response = await fetch("http://localhost:4321/travelStudies.json");
 
 const data = await response.json();
 
 // Ensure the data is in the expected format
 const travelStudies = Array.isArray(data) ? data : [];
 
-const blogs = await Astro.glob('../pages/blog/*.md');
-
+const blogs = await Astro.glob("../pages/blog/*.md");
 ---
 
-<BaseLayout pageTitle= {pageTitle}>
-   
-    <div class="hero flex flex-col w-full h-screen ">  
-        <div id="heroImage" class=" mx-8 h-[80%] bg-color-pink">
-            <img src="/hero.jpg"  class="w-auto h-full object-cover"/>
-        </div>
-       
-        <div class="my-4 mx-8 flex justify-end" >
-            <h1 class="pb-4">
-                Dow Records
-            </h1>
-        
-        </div>
-    </div> 
-    <div class="hero flex flex-col w-full">
-        <div class="w-full mb-8 mx-8">
-          <h2>Naples</h2>
-        </div>
-        
-        <div class="flex flex-wrap justify-around items-center mx-8">
-          {
-          travelStudies.filter((travelStudy) => travelStudy.location === "Napoli")
+<BaseLayout pageTitle={pageTitle}>
+  <div class="hero flex flex-col w-full h-screen">
+    <div id="heroImage" class="mx-8 h-[80%] bg-color-pink">
+      <img src="/hero.jpg" class="w-auto h-full object-cover" />
+    </div>
+
+    <div class="my-4 mx-8 flex justify-end">
+      <h1 class="pb-4">Dow Records</h1>
+    </div>
+  </div>
+  <div class="hero flex flex-col w-full">
+    <div class="w-full mb-8 mx-8">
+      <h2>Naples</h2>
+    </div>
+
+    <div class="flex flex-wrap justify-around items-center mx-8">
+      {
+        travelStudies
+          .filter((travelStudy) => travelStudy.location === "Napoli")
           .map((travelStudy) => (
             <article class=" sm:w-[45%] lg:w-[20%]  flex flex-col mb-8 ">
-              <img src={travelStudy.image} alt="" class="w-full object-cover " />
+              <img
+                src={travelStudy.image}
+                alt=""
+                class="w-full object-cover "
+              />
               <div class="p-4 bg-color-pink">
                 <h3 class="text-xl font-bold">{travelStudy.title}</h3>
                 <p class="mt-2 text-sm">{travelStudy.description}</p>
               </div>
             </article>
-          ))}
-        </div>
+          ))
+      }
     </div>
-    <section class="w-full px-8"> 
-      <div class="container mx-auto">
-        <h2 class="mb-8">Blog</h2>
-        <div class="flex flex-wrap justify-between items-center gap-6">
-
-        {blogs.map((blog) =>
-        <article class="sm:w-[45%] lg:w-[30%] h-96"> 
-          <img class=" w-full object-cover h-[80%]" src={blog.frontmatter.image.url} alt={blog.frontmatter.image.alt}/>
-          <div class="bg-color-pink p-4">
-            <h3>{blog.frontmatter.title}</h3>
-            <p>{blog.frontmatter.title}</p>
-            <button class="border border-color-black p-2 hover:bg-color-primary mt-2"><a href={blog.url}>Read More...</a> </button>
-          </div>
-        </article>
-      )}
-        </div>
+  </div>
+  <section class="w-full px-8">
+    <div class="container mx-auto">
+      <h2 class="mb-8">Blog</h2>
+      <div class="flex flex-wrap justify-between items-center gap-6">
+        {
+          blogs.map((blog) => (
+            <article class="sm:w-[45%] lg:w-[30%] h-96">
+              <img
+                class=" w-full object-cover h-[80%]"
+                src={blog.frontmatter.image.url}
+                alt={blog.frontmatter.image.alt}
+              />
+              <div class="bg-color-pink p-4">
+                <h3>{blog.frontmatter.title}</h3>
+                <p>{blog.frontmatter.title}</p>
+                <button class="border border-color-black p-2 hover:bg-color-primary mt-2">
+                  <a href={blog.url}>Read More...</a>{" "}
+                </button>
+              </div>
+            </article>
+          ))
+        }
       </div>
-    </section> 
-
+    </div>
+  </section>
 </BaseLayout>
