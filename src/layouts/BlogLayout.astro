@@ -1,0 +1,32 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const {frontmatter} = Astro.props;
+const { pageTitle } = Astro.props;
+---
+<style>
+.meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+</style>
+<BaseLayout>
+        <div class="container mx-8">
+            <time class="date" >
+                {frontmatter.pubDate.slice(0,10)}
+            </time>
+            <h1 class="title mb-4">{frontmatter.title}</h1>
+            <p class="description uppercase">{frontmatter.description}</p>
+
+
+            <div class="meta w-full h-auto flex">
+                <div class="sm:w-[50%] h-full object-cover">
+                    <img class="poster w-full h-full object-cover" src={frontmatter.image.url} alt={frontmatter.image.alt} />
+                </div>
+                <div class="body sm:w-[50%] p-8 bg-color-pink items-center direction-column flex-grow">
+                    <slot/>
+                </div>
+            </div>
+        </div>
+</BaseLayout>
